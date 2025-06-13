@@ -12,7 +12,7 @@ _steps = [
     "basic_cleaning",
     "data_check",
     "data_split",
-    "train_random_forest",
+    #"train_random_forest",
     # NOTE: We do not include this in the steps so it is not run by mistake.
     # You first need to promote a model export to "prod" before you can run this,
     # then you need to run this step explicitly
@@ -90,6 +90,16 @@ def go(config: DictConfig):
             ##################
             # Implement here #
             ##################
+            _ = mlflow.run(
+                f"{config['main']['components_repository']}/train_val_test_split",
+                "main",
+                parameters={
+                    "input": "clean_sample.csv:latest",
+                    "test_size": config['modeling']['test_size'],
+                    "random_seed": config['modeling']['random_seed'],
+                    "stratify_by": config['modeling']['stratify_by'],
+                }
+            )
             pass
 
         if "train_random_forest" in active_steps:
