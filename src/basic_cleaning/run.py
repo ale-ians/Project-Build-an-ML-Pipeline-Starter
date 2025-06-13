@@ -89,7 +89,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--max_price",
         type = float,## INSERT TYPE HERE: str, float or int,
-        help = "Maximum price allowed for prediction column"## INSERT DESCRIPTION HERE,
+        help = "Maximum price allowed for prediction column",## INSERT DESCRIPTION HERE,
         required = True
     )
 
